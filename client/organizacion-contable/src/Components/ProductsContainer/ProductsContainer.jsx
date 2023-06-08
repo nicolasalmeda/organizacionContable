@@ -1,31 +1,50 @@
 import {React,useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addCartProduct} from '../../Redux/actions/actions';
+import { getAllProducts,addCartProduct} from '../../Redux/actions/actions';
 import CardProduct from '../CardProduct/CardProduct';
 import  Container  from 'react-bootstrap/Container';
 import './ProductsContainer.css';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 function ProductsContainer(){
     const dispatch = useDispatch();
-    // let itemsToCart = useSelector((state) => state.cart)
+    let itemsToCart = useSelector((state) => state.cart)
     const allProducts = useSelector((state) => state.products)
     const [mount,setMount] = useState(true);
+    
 
-    // useEffect(() => {
-    //     if(!mount){
-    //         if(itemsToCart&& itemsToCart.length){
-    //             window.localStorage.setItem('carrito',JSON.stringify(itemsToCart));
-    //         } else {
-    //             window.localStorage.removeItem('carrito');
-    //         }
-    //         } else {
-    //             setMount(false);
-    //         }
-    //     },[dispatch,itemsToCart,mount]);
+    useEffect(() => {
+        if(!mount){
+            if(itemsToCart&& itemsToCart.length){
+                window.localStorage.setItem('carrito',JSON.stringify(itemsToCart));
+            } else {
+                window.localStorage.removeItem('carrito');
+            }
+            } else {
+                setMount(false);
+            }
+        },[dispatch,itemsToCart,mount]);
+
+        // useEffect(() => {
+        //     axios.get('http://localhost:3001/api/productos')
+        //     .then(response => setData(response.data))
+        //     .catch(error => console.error(error))
+        // },[])
+        // console.log(allProducts);
+        // console.log(data)
+
+        useEffect(() => {
+            dispatch(getAllProducts());
+        },[dispatch])
 
         const addToCart = (id) => {
             let payload = {};
+            payload = {
+                idtelefono: id
+            }
+
+            
             dispatch(addCartProduct(payload));
             Swal.fire({position: 'top-end',
             imageUrl: 'https://res.cloudinary.com/dc8w6pspj/image/upload/v1662498810/sucess_otelvh.png',
@@ -40,7 +59,7 @@ function ProductsContainer(){
         })
         }
 
-        console.log(allProducts);
+      
 
     return (
         <div>

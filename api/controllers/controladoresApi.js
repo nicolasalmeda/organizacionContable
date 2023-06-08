@@ -5,7 +5,7 @@ const controladoresApi = {
         try{
 
             const allProducts = databaseProductos.getAll();
-            console.log(allProducts);
+            // console.log(allProducts);
             res.json(allProducts);
         } 
         catch(error){

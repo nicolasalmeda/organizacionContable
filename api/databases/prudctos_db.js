@@ -112,64 +112,10 @@ const products = [
         "https://medias.musimundo.com/medias/00543007-146077-146077-01-146077-01.jpg-size515?context=bWFzdGVyfGltYWdlc3w4NjkyN3xpbWFnZS9qcGVnfGg1MC9oODUvMTAzOTA2NTE5Mjg2MDYvMDA1NDMwMDctMTQ2MDc3LTE0NjA3N18wMS0xNDYwNzdfMDEuanBnX3NpemU1MTV8ZDMzMGNjNTZiNTI0Yjg2NjA0NGJmNGU5ZWZjNGZhYWJkNTVmYmNmZTAyMWZkNGIwYTU2OTU0NzI5YWE5ZjY0ZA",
       quantity: 215,
       stock: true,
-    },
-    {
-      id: "0a9ec315-24ef-43de-a37d-c66fcf4ccdba",
-      brands: "Samsung",
-      name: "Samsung S22 Ultra",
-      price: 331999,
-      weight: 228,
-      height: 16.89,
-      ram: 12,
-      storage: 256,
-      camera: 108,
-      display: 6.8,
-      batery: 3700,
-      description:
-        "La IA mejorada toma 5000 mAh (normal) de potencia de un día al otro, adaptándose de manera inteligente a la forma en que usás tu smartphone.Para abreviar: ahorrá energía para cuando más la necesitás, para una duración de la batería de más horas de las que hay en un día.",
-      image:
-        "https://medias.musimundo.com/medias/00510016-145432-145432-01-145432-01.jpg-size515?context=bWFzdGVyfGltYWdlc3w4NTcxNXxpbWFnZS9qcGVnfGg1MS9oN2YvMTAzODE1NzgzMzgzMzQvMDA1MTAwMTYtMTQ1NDMyLTE0NTQzMl8wMS0xNDU0MzJfMDEuanBnX3NpemU1MTV8MDRjZmRjYWEyNTUwZWE2YmZjYzhlMzRlNWMwYTA3YzVjMDkxNWM5N2EwZjZmYmVmNjQ5MjBlODM1OTM2ZjcwMQ",
-      quantity: 124,
-      stock: true,
-    },
-    {
-      id: "221984ae-7e71-470c-984a-3fa90dc883fe",
-      brands: "Samsung",
-      name: "Samsung S22+",
-      price: 272999,
-      weight: 195,
-      height: 16.76,
-      ram: 8,
-      storage: 256,
-      camera: 50,
-      display: 6.6,
-      batery: 4500,
-      description:
-        "La inspiración no espera una iluminación óptima y ahora tampoco tenés que hacerlo. El mayor salto en nuestra tecnología de video, la velocidad de fotogramas automática coincide con la velocidad de fps de tu entorno y Super Night Solution elimina el ruido en cada fotograma para obtener imágenes vívidas de alta calidad, ya sea que estés bajo el sol o bajo las estrellas.",
-      image:
-        "https://medias.musimundo.com/medias/00510019-145436-145436-01-145436-01.jpg-size515?context=bWFzdGVyfGltYWdlc3w3ODkyN3xpbWFnZS9qcGVnfGg0Yi9oZmUvMTAzODE1ODAzMDQ0MTQvMDA1MTAwMTktMTQ1NDM2LTE0NTQzNl8wMS0xNDU0MzZfMDEuanBnX3NpemU1MTV8NTc0YmU3M2RiNWZkZTQwY2ZmYTE2YzVhYjlmNGVmODlkNzk0ZjEyOGI0YzAxZTc0ODYyMjBhZTk3Nzc2MjVmYQ",
-      quantity: 112,
-      stock: true,
-    },
-    {
-      id: "96ac50b6-183f-4308-b831-384131358234",
-      brands: "Samsung",
-      name: "Samsung S22",
-      price: 215999,
-      weight: 195,
-      height: 16.76,
-      ram: 8,
-      storage: 128,
-      camera: 50,
-      display: 6.1,
-      batery: 3700,
-      description:
-        "La inspiración no espera una iluminación óptima y ahora tampoco tenés que hacerlo. El mayor salto en nuestra tecnología de video, la velocidad de fotogramas automática coincide con la velocidad de fps de tu entorno y Super Night Solution elimina el ruido en cada fotograma para obtener imágenes vívidas de alta calidad, ya sea que estés bajo el sol o bajo las estrellas.",
-      image:
-        "https://medias.musimundo.com/medias/00510018-145440-145440-01-145440-01.jpg-size515?context=bWFzdGVyfGltYWdlc3w4MjEyMHxpbWFnZS9qcGVnfGg1YS9oMmQvMTAzODE1ODIyNzA0OTQvMDA1MTAwMTgtMTQ1NDQwLTE0NTQ0MF8wMS0xNDU0NDBfMDEuanBnX3NpemU1MTV8YjE1YzNhN2UzMThjZTJlYWJkY2QwMzBmNjZmMTU5ZjVmZjQ1NDIxMzQ4ZTc2ZTUyMmU1OGVlMjczNTMzMTA0NQ",
-      quantity: 3532,
-      stock: true,
     }
+    
+    
+    
 ];
 
 const databaseProductos = {
