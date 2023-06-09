@@ -7,6 +7,8 @@ import {
   allProductsDelete,
   deleteCart,
   productDelete,
+  saveOrder,
+  editProduct,
 } from '../../Redux/actions/actions';
 import CardProductCart from '../CardProductCart/CardProductCart';
 import Container from 'react-bootstrap/Container';
@@ -30,6 +32,8 @@ function ShoppingCart() {
   const [discount, setDiscount] = useState(0);
   const [note, setNote] = useState('');
   const [filterCarrito, setFilterCarrito] = useState();
+  const today = new Date();
+  const formatteDate = today.toLocaleDateString();
   
   
 
@@ -116,6 +120,41 @@ function ShoppingCart() {
 
   console.log('final', itemsToCart );
 
+  const handleOrder = () => {
+
+    const order = {
+      id: 0,
+      cart: itemsToCart,
+      precioTotal: total,
+      envio: false,
+      fecha: formatteDate
+    }
+    const cart = itemsToCart;
+   
+
+    dispatch(saveOrder(order));
+    dispatch(editProduct(cart));
+    dispatch(deleteCart(itemsToCart))
+    Swal.fire({position: 'top-end',
+            imageUrl: 'https://res.cloudinary.com/dc8w6pspj/image/upload/v1662498810/sucess_otelvh.png',
+            imageWidth: 80,
+            imageHeight: 80,
+            text: 'Pedido enviado existosamente',
+            showConfirmButton: false,
+            timer: 2000,
+            width: '12rem',
+            heigh: '5rem',
+            padding:'0.5rem',
+        })
+
+    console.log(order);
+  }
+
+  const handleEdit = () => {
+   
+  }
+
+  
 
   return (
     <Container className="py-4 ">
@@ -146,6 +185,7 @@ function ShoppingCart() {
                       cantidad={item.cantidad}
                       price={item.price}
                       imgUri={item.image || imgDefault}
+                      quantity={item.quantity}
                     />
                   }
                   <div>
@@ -190,10 +230,10 @@ function ShoppingCart() {
                   <strong>Total de mi compra:</strong>
                   <span> {`$${' ' + (total ).toFixed(2)}`}</span>
                 </h2>
-                <Button>Confirmar Pago</Button>
+                <Button onClick={handleOrder} >Confirmar Pedido</Button>
             </div>
             <Link to="/">
-              <Button>Seguir Comprando</Button>
+              <Button >Seguir Comprando</Button>
             </Link>
           </div>
         </>

@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 
 import './CardProductCart.css';
 
-function CardProductCart({ name, price, imgUri, cantidad }) {
+function CardProductCart({ name, price, imgUri, cantidad, quantity}) {
   return (
     <Container>
       <Row className="cardProductCart__Container py-2 mb-3">
@@ -18,6 +18,7 @@ function CardProductCart({ name, price, imgUri, cantidad }) {
         </Col>
         <Col lg={4} sx={4}>
           <h3>{name}</h3>
+          <p>Stock: {' '+ quantity}</p>
           <p>Cantidad: {' ' + cantidad}</p>
         </Col>
         <Col lg={4} sx={4}>

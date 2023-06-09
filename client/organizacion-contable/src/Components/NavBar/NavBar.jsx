@@ -82,10 +82,10 @@ function NavBar() {
                     path === '/menu' ? 'linkActive' : 'navBar__users__link'
                   }
                   as={Link}
-                  to="/menu"
+                  to="/pedidos"
                   onClick={setScrollToTop}
                 >
-                  Menú
+                  Pedidos
                 </Nav.Link>
                 {/* <Nav.Link
                   className={
@@ -103,10 +103,10 @@ function NavBar() {
                     path === '/contacto' ? 'linkActive' : 'navBar__users__link'
                   }
                   as={Link}
-                  to="/contacto"
+                  to="/asientos"
                   onClick={setScrollToTop}
                 >
-                  Contacto
+                  Asientos
                 </Nav.Link>
                 <Nav.Link
                   className="ms-5 me-5"
@@ -117,9 +117,7 @@ function NavBar() {
                   
                     <>
                       <CartCheckFill className="CartCheckFill" />
-                      <span className="cart__fill__items">
-                        
-                      </span>
+                      
                     </>
                 </Nav.Link>
               </Nav>

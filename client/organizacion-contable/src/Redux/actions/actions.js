@@ -5,6 +5,9 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART';
 export const CLEAR_CART = 'CLEAR_CART';
 export const DELETE_ONE_PRODUCT_CART = 'DELETE_ONE_PRODUCT_CART';
+export const SAVE_ORDER = 'SAVE_ORDER';
+export const EDIT_PRODUCT = 'EDIT_PRODUCT';
+export const GET_ORDERS = 'GET_ORDERS'
 
 
 
@@ -34,7 +37,6 @@ export const addCartProduct = (payload) => {
 export function deleteCart(payload) {
   return {
     type: CLEAR_CART,
-    payload: payload,
   };
 }
 
@@ -59,3 +61,41 @@ export function productDelete (id) {
   }
 
 }
+
+export const saveOrder =  (order) => {
+  return async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/api/pedidos',order)
+      return console.log(response);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+ 
+}
+
+export const editProduct = (cart) => {
+  return async () => {
+    try{
+      const response = await axios.put('http://localhost:3001/api/editarProductos',cart)
+      return console.log(response);
+    } catch(error){
+      console.log(error)
+    }
+  }
+}
+export const getOrders = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get( 'http://localhost:3001/api/pedidos')
+      dispatch({
+        type: GET_ORDERS,
+        payload: response.data,
+      })
+    } catch(error){
+      dispatch({
+        type:  GET_ORDERS,
+        payload: error.message,
+      })
+    }  }
+} 

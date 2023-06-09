@@ -1,10 +1,11 @@
-import { GET_ALL_PRODUCTS,ADD_TO_CART,DELETE_PRODUCT_CART, DELETE_ONE_PRODUCT_CART } from "../actions/actions";
+import { GET_ALL_PRODUCTS,ADD_TO_CART,DELETE_PRODUCT_CART, DELETE_ONE_PRODUCT_CART,SAVE_ORDER, EDIT_PRODUCT,CLEAR_CART, GET_ORDERS } from "../actions/actions";
 import {addItem, deleteAllItem,deleteItem} from './utils'
 
 const initialState = {
   products: [],
   error:null,
-  cart:[]
+  cart:[],
+  orders:[]
 }
 
 const reducer = (state = initialState,action) => {
@@ -16,6 +17,13 @@ const reducer = (state = initialState,action) => {
           products:action.payload,
           error: null,
         }
+
+        case GET_ORDERS:
+          return {
+            ...state,
+            orders:action.payload,
+            error: null,
+          }
 
         case ADD_TO_CART:
           /* payload es el id, array de products, y el array de carrito */
@@ -35,6 +43,22 @@ const reducer = (state = initialState,action) => {
           ...state,
           cart: deleteItem(action.payload, state.cart)
         }
+      
+        case SAVE_ORDER: 
+        return{
+          ...state
+        }
+        
+        case EDIT_PRODUCT:
+          return{
+            ...state
+          }
+
+        case CLEAR_CART:
+          return {
+            ...state,
+            cart: []
+          }
 
        default:
         return state;

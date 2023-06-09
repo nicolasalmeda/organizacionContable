@@ -72,6 +72,7 @@ function ProductsContainer(){
                         price={item.price}
                         imgUri={item.image}
                         brands={item.brands}
+                        quantity={item.quantity}
                         key={item.name}
                         addToCart={addToCart} />
                     ))
