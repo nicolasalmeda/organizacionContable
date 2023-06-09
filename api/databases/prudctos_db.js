@@ -15,7 +15,7 @@ const products = [
         "Ampliá tu visión con la pantalla Infinity-V de 6,5 pulgadas de Galaxy A03 Core y mira lo que te estuviste perdiendo. Gracias a la tecnología HD+, tus contenidos cotidianos se ven mejor: nítidos, definidos y claros",
       image:
         "https://medias.musimundo.com/medias/00505029-145305-145305-01-145305-01.jpg-size515?context=bWFzdGVyfGltYWdlc3w3MzM4NXxpbWFnZS9qcGVnfGgyZC9oOTUvMTAzODE1MTM0OTA0NjIvMDA1MDUwMjktMTQ1MzA1LTE0NTMwNV8wMS0xNDUzMDVfMDEuanBnX3NpemU1MTV8N2EzYTBhMmVkNDg0NjQyNGJjZmFmZmI0MzY5MjEyMjhjNzZkM2ZkM2UxY2YyMjg4Yjc2NDIyYTU1OTczYjIyYw",
-      quantity: 5,
+      quantity: 10,
       stock: true,
     },
     {
@@ -34,7 +34,7 @@ const products = [
         "La pantalla principal está hecha de vidrio ultradelgado Samsung, el mayor salto en nuestra tecnología de pantalla plegable. Con la adición de una capa de panel y una película protectora, es un 80 % más duradera que antes.",
       image:
         "https://medias.musimundo.com/medias/00434005-144167-144167-01-144167-01.jpg-size515?context=bWFzdGVyfGltYWdlc3wzMzEzNXxpbWFnZS9qcGVnfGgwYS9oMTgvMTAzODA4ODg1MDYzOTgvMDA0MzQwMDUtMTQ0MTY3LTE0NDE2N18wMS0xNDQxNjdfMDEuanBnX3NpemU1MTV8MmEzOTU2MDY4MWE1NzNiYjJjNWZiMTc3MmQwMzEyNDIxZmU2ZDE1ODA0NmQ4YjJhZTk5MzFmNDUwZDc0MDQ2ZQ",
-      quantity: 5,
+      quantity: 6,
       stock: true,
     },
     {
@@ -72,7 +72,7 @@ const products = [
         "La pantalla principal está hecha de vidrio ultradelgado Samsung, el mayor salto en nuestra tecnología de pantalla plegable. Con la adición de una capa de panel y una película protectora, es un 80 % más duradera que antes y soporta hasta 200 000 pliegues.",
       image:
         "https://medias.musimundo.com/medias/00460019-144679-144679-01-144679-01.jpg-size515?context=bWFzdGVyfGltYWdlc3w1MjAwN3xpbWFnZS9qcGVnfGg0Mi9oNzQvMTAzODExMjUxNTY4OTQvMDA0NjAwMTktMTQ0Njc5LTE0NDY3OV8wMS0xNDQ2NzlfMDEuanBnX3NpemU1MTV8ZTIwOGU0NjkyZjVhMThkMzUyNWRmZjNhNmI3NzRiNGYwYTUxMWYzOGU3MTQ3MTQ1NzE1YTgwZTAxMTI5Yjg3Ng",
-      quantity: 200,
+      quantity: 7,
       stock: true,
     },
     {
@@ -110,7 +110,7 @@ const products = [
         "Integrado en el hardware y el software del smartphone desde el principio, Samsung Knox protege su smartphone desde el momento en que se enciende. Ofreciendo seguridad de múltiples capas, defiende tu información más confidencial del malware y las amenazas maliciosas.",
       image:
         "https://medias.musimundo.com/medias/00543007-146077-146077-01-146077-01.jpg-size515?context=bWFzdGVyfGltYWdlc3w4NjkyN3xpbWFnZS9qcGVnfGg1MC9oODUvMTAzOTA2NTE5Mjg2MDYvMDA1NDMwMDctMTQ2MDc3LTE0NjA3N18wMS0xNDYwNzdfMDEuanBnX3NpemU1MTV8ZDMzMGNjNTZiNTI0Yjg2NjA0NGJmNGU5ZWZjNGZhYWJkNTVmYmNmZTAyMWZkNGIwYTU2OTU0NzI5YWE5ZjY0ZA",
-      quantity: 215,
+      quantity: 15,
       stock: true,
     }
     
@@ -118,7 +118,11 @@ const products = [
     
 ];
 
+
+
 const databaseProductos = {
+  products:products,
+
     getById : (num) => {
         let obj = products.find(obj => obj.id === num);
         if(!obj){
@@ -132,7 +136,27 @@ const databaseProductos = {
 
     getAll : () => {
         return [...products];
+    },
+
+    editarProduct: (cart) => {
+      try{
+        for(i=0; i<cart.length;i++){
+          for(j=0;j<products.length;j++){
+            if(cart[i].id === products[j].id){
+              console.log('Antes: ',products[j].quantity)
+              products[j].quantity= products[j].quantity - cart[i].cantidad
+              console.log('Despues: ',products[j].quantity)
+            }
+          }
+        }
+
+        
+      }catch(error){ console.log('ERROR: ',error)
+
     }
+    
 } 
+
+}
 
 module.exports = {databaseProductos,products};

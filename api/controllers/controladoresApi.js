@@ -22,7 +22,23 @@ const controladoresApi = {
         }catch(error){
             res.status(404).json({error : error.message});
         }
+    },
+
+    editProduct : (req,res) => {
+        const cart = req.body;
+        try{
+            const productoEditado = databaseProductos.editarProduct(cart);
+            res.json(productoEditado);
+            return console.log(productoEditado);
+
+
+        }catch(error){
+            res.status(404).json({error: error.message})
+        }
     }
+    
+
+   
 }
 
 module.exports ={controladoresApi};

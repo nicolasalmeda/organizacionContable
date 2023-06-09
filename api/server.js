@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const app = express();
 
 const {routerApiProductos} = require("./routers/routerApiProductos.js");
+const {routerPedidos} = require("./routers/routerPedidos.js")
 
 
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.use(routerApiProductos);
+app.use(routerPedidos);
 
 
 
