@@ -8,6 +8,8 @@ export const DELETE_ONE_PRODUCT_CART = 'DELETE_ONE_PRODUCT_CART';
 export const SAVE_ORDER = 'SAVE_ORDER';
 export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const GET_ORDERS = 'GET_ORDERS'
+export const CLEAR_STATE = 'CLEAR_STATE';
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID'
 
 
 
@@ -99,3 +101,24 @@ export const getOrders = () => {
       })
     }  }
 } 
+
+export function clearState(payload) {
+  return {
+    type: CLEAR_STATE,
+    payload,
+  };
+}
+
+export function getProductById(id) {
+  return async function (dispatch) {
+    const json = await axios('http://localhost:3001/api/productosById/' + id);
+    try {
+      return dispatch({
+        type: GET_PRODUCT_BY_ID,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+  };
+}
+}

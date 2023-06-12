@@ -149,11 +149,6 @@ function ShoppingCart() {
 
     console.log(order);
   }
-
-  const handleEdit = () => {
-   
-  }
-
   
 
   return (

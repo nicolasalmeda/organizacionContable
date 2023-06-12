@@ -79,7 +79,7 @@ function NavBar() {
                 </Nav.Link>
                 <Nav.Link
                   className={
-                    path === '/menu' ? 'linkActive' : 'navBar__users__link'
+                    path === '/pedidos' ? 'linkActive' : 'navBar__users__link'
                   }
                   as={Link}
                   to="/pedidos"
@@ -100,13 +100,23 @@ function NavBar() {
 
                 <Nav.Link
                   className={
-                    path === '/contacto' ? 'linkActive' : 'navBar__users__link'
+                    path === '/asientos' ? 'linkActive' : 'navBar__users__link'
                   }
                   as={Link}
                   to="/asientos"
                   onClick={setScrollToTop}
                 >
                   Asientos
+                </Nav.Link>
+                <Nav.Link
+                  className={
+                    path === '/create' ? 'linkActive' : 'navBar__users__link'
+                  }
+                  as={Link}
+                  to="/create"
+                  onClick={setScrollToTop}
+                >
+                 Create
                 </Nav.Link>
                 <Nav.Link
                   className="ms-5 me-5"

@@ -20,12 +20,17 @@ function CardProduct ({id,name,price,imgUri,addToCart,brands,quantity}){
 
 
             <div className="container__product-detail">
+           
             <div className="page-wrapper">
+            
                 <div className="row">
                     <div className="el-wrapper">
+                    <Link to={`/detalle/${id}`}>
                         <div className="box-up">
                         <img src={ImgUri} alt="asdsd" className="outofstockimg"/>
-                            {/* <img className="img-card" src={imgUri} alt="" /> */}
+                        
+                        
+                            
                             <div className="img-info">
                                 <div className="info-inner">
                                     <span className="p-name">{name.toUpperCase()}</span>
@@ -37,8 +42,9 @@ function CardProduct ({id,name,price,imgUri,addToCart,brands,quantity}){
                                 </div>
 
                             </div>
-
+                            
                         </div>
+                        </Link>
                         
                         <div className="box-down">
                             <div className="h-bg">
@@ -68,6 +74,7 @@ function CardProduct ({id,name,price,imgUri,addToCart,brands,quantity}){
             <div className="el-wrapper">
                 <div className="box-up">
                     <img className="img-card" src={imgUri} alt="" />
+                    <Link to={`/detalle/${id}`}>
                     <div className="img-info">
                         <div className="info-inner">
                             <span className="p-name">{name.toUpperCase()}</span>
@@ -80,6 +87,7 @@ function CardProduct ({id,name,price,imgUri,addToCart,brands,quantity}){
 
                     </div>
 
+                 </Link>
                 </div>
 
                 <div className="box-down">

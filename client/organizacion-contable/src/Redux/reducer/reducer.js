@@ -1,4 +1,13 @@
-import { GET_ALL_PRODUCTS,ADD_TO_CART,DELETE_PRODUCT_CART, DELETE_ONE_PRODUCT_CART,SAVE_ORDER, EDIT_PRODUCT,CLEAR_CART, GET_ORDERS } from "../actions/actions";
+import { GET_ALL_PRODUCTS,
+  ADD_TO_CART,
+  DELETE_PRODUCT_CART, 
+  DELETE_ONE_PRODUCT_CART,
+  SAVE_ORDER,
+  EDIT_PRODUCT,CLEAR_CART, 
+  GET_ORDERS, 
+  GET_PRODUCT_BY_ID, 
+  CLEAR_STATE 
+} from "../actions/actions";
 import {addItem, deleteAllItem,deleteItem} from './utils'
 
 const initialState = {
@@ -59,8 +68,21 @@ const reducer = (state = initialState,action) => {
             ...state,
             cart: []
           }
+          case GET_PRODUCT_BY_ID:
+          return {
+          ...state,
+          productDetail: action.payload,
+        }
 
-       default:
+        case CLEAR_STATE:
+      return {
+        ...state,
+        productDetail: [],
+      };
+
+      
+
+     default:
         return state;
     }
 }
