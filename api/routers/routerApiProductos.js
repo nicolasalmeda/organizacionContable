@@ -9,6 +9,7 @@ routerApiProductos.use(express.urlencoded({extended:true}));
 routerApiProductos.get("/api/productos", controladoresApi.getAll);
 routerApiProductos.get("/api/productosById/:id", controladoresApi.getById);
 routerApiProductos.put("/api/editarProductos", controladoresApi.editProduct);
+routerApiProductos.post("api/createProductos",controladoresApi.createProduct);
 
 
 module.exports = {routerApiProductos};

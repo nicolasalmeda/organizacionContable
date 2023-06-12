@@ -16,7 +16,7 @@ const controladoresApi = {
     getById : (req,res) => {
         const id = req.params.id;
         try{
-            const obj = databaseProductos.getById(Number(id));
+            const obj = databaseProductos.getById(id);
             console.log(obj);
             res.json(obj);
         }catch(error){
@@ -35,8 +35,18 @@ const controladoresApi = {
         }catch(error){
             res.status(404).json({error: error.message})
         }
-    }
+    },
     
+    createProduct : (req,res) => {
+        const data = req.body;
+        try{
+            const productoCreado = databaseProductos.crearProduct(data);
+            res.json(productoCreado);
+            return  res.status(200).json({message: 'Producto agregado'});
+        }catch(error){
+            res.status(404).json({error: error.message})
+        }
+    }
 
    
 }

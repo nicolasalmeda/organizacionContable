@@ -123,8 +123,8 @@ const products = [
 const databaseProductos = {
   products:products,
 
-    getById : (num) => {
-        let obj = products.find(obj => obj.id === num);
+    getById : (id) => {
+        let obj = products.find(obj => obj.id === id);
         if(!obj){
             const error = new Error("producto no encontrado");
             error.tipo = "db not found";
@@ -149,13 +149,22 @@ const databaseProductos = {
             }
           }
         }
-
-        
-      }catch(error){ console.log('ERROR: ',error)
-
-    }
+      }catch(error){ console.log('ERROR: ',error)}
     
-} 
+    },
+
+crearProduct : (data) => {
+  try{
+    const newProduct= {
+      id: utils.generarId(),
+      ...data
+    }
+
+    products.push(newProduct);
+  }catch(error){
+    console.log('ERROR: ',error)
+  }
+}
 
 }
 
