@@ -1,3 +1,4 @@
+const {generarId} = require('../Utils/Utils')
 const products = [
     {
       id: "36a87d0a-e68e-46cd-9fee-e6d364116076",
@@ -156,7 +157,7 @@ const databaseProductos = {
 crearProduct : (data) => {
   try{
     const newProduct= {
-      id: utils.generarId(),
+      id: generarId(),
       ...data
     }
 
@@ -164,7 +165,19 @@ crearProduct : (data) => {
   }catch(error){
     console.log('ERROR: ',error)
   }
+},
+editarProductById: (id, updatedProduct) => {
+  const productIndex = products.findIndex(obj => obj.id === id);
+  if (productIndex === -1) {
+    const error = new Error("Producto no encontrado");
+    error.tipo = "db not found";
+    throw error;
+  } else {
+    products[productIndex] = { ...products[productIndex], ...updatedProduct };
+    return products[productIndex];
+  }
 }
+
 
 }
 

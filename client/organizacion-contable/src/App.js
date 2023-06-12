@@ -4,6 +4,7 @@ import Footer from './Components/Footer/Footer';
 import NavBar from './Components/NavBar/NavBar';
 import EmployeePendingOrder from './Components/EmployeePendignOrder/EmployeePendingOrder'
 import ProductDetail from './Components/ProductDetail/ProductDetail'
+import CreateOrEdit from './Components/CreateOrEdit/CreateOrEdit'
 
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
@@ -19,6 +20,7 @@ function App() {
       <Route path='/cart' element={<ShoppingCart/>} />
       <Route path='/pedidos' element={<EmployeePendingOrder/>}/>
       <Route path='/detalle/:id' element={<ProductDetail/>}/>
+      <Route path='/create' element={<CreateOrEdit/>}/>
          
       </Routes>
      <Footer/>

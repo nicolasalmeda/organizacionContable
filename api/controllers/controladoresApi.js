@@ -46,6 +46,20 @@ const controladoresApi = {
         }catch(error){
             res.status(404).json({error: error.message})
         }
+    },
+
+    editProductById : (req,res) => {
+        const id = req.params.id;
+        const data = req.body;
+        console.log(data);
+        try{
+            const productUpdated = databaseProductos.editarProductById(id,data);
+            res.json(productUpdated);
+            return res.status(200).json({message: 'Producto actualizado'});
+        }catch(error){
+            res.status(404).json({error: error.message})
+            console.log(error);
+        }
     }
 
    

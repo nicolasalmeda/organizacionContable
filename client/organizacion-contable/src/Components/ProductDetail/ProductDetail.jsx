@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { clearState, getProductById } from '../../Redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartProduct } from '../../Redux/actions/actions';
+import CreateOrEdit from '../CreateOrEdit/CreateOrEdit';
 import Swal from 'sweetalert2';
 import Loading from '../Loading/Loading';
 import Container from 'react-bootstrap/Container';
@@ -16,6 +17,7 @@ function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const producto = useSelector((state) => state.productDetail);
+  const [mostrar, setMostrar] = useState(false);
 
 
   const scrollToTop = () => {
@@ -57,7 +59,14 @@ function ProductDetail() {
     };
   }, [dispatch, id]);
 
+  const onClick = () => {
+    return setMostrar(true);
+  }
+
   return (
+    <>
+    { mostrar? ( <CreateOrEdit data={producto}/>)
+            :(
     <div>
       <Container className="productDetail__container">
         <hr />
@@ -149,11 +158,18 @@ function ProductDetail() {
         )}
 
         <hr />
+        <Button onClick={onClick} className="mt-3 mb-5">
+          Editar Producto
+        </Button>
+        <br/>
         <Button as={Link} to="/" className="mt-3 mb-5">
           Volver al Menú
         </Button>
+       
       </Container>
-    </div>
+    </div>)
+    }
+    </>
   );
 }
 

@@ -4,4 +4,4 @@ function generarId(){
   return uuidv4();
 }
 
-module.exports = { generarId};
+module.exports = {generarId};

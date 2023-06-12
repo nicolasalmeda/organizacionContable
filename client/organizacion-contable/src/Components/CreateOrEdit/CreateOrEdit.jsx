@@ -7,11 +7,11 @@ import Container from 'react-bootstrap/Container';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
-  alertCustom,
   createProduct,
   updateProduct,
-} from '../../../../requests';
-import { postImageToCloudinary, setImgProductErr } from '../../../../methods';
+} from '../requests';
+import Swal from 'sweetalert2';
+
 
 import './CreateOrEdit.css';
 import '../FormsGlobal.css';
@@ -20,7 +20,6 @@ function CreateOrEdit({ data }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [edit] = useState(isEdit());
-  const [isRestore, setRestore] = useState(false);
   const [input, setInput] = useState({
     name: '',
     price: '',
@@ -38,7 +37,7 @@ function CreateOrEdit({ data }) {
   });
 
   useEffect(() => {
-    if (edit && !isRestore) {
+    if (edit) {
       setInput({
         id: data.id,
         name: data.name,
@@ -55,9 +54,8 @@ function CreateOrEdit({ data }) {
         image: data.image ? data.image : '',
         quantity: data.quantity,
       });
-      setRestore(true);
     }
-  }, [dispatch, edit, isRestore, data]);
+  }, [dispatch, edit, data]);
 
   function isDisabledSubmit() {
     return !input.name || !input.price;
@@ -70,23 +68,6 @@ function CreateOrEdit({ data }) {
     });
   };
 
-  async function setImg(e) {
-    const result = await postImageToCloudinary(e);
-
-    if (result) {
-      setInput({
-        ...input,
-        image: result,
-      });
-    } else {
-      e.target.value = '';
-    }
-  }
-
-  function returnback() {
-    navigate('/adminproducts');
-  }
-
   function isEdit() {
     return data && Object.keys(data).length;
   }
@@ -96,34 +77,58 @@ function CreateOrEdit({ data }) {
     if (edit) {
       try {
         await updateProduct('product', input);
-        alertCustom(
-          input.name,
-          'Actualizada con exito!',
-          'https://res.cloudinary.com/dc8w6pspj/image/upload/v1662498810/sucess_otelvh.png'
-        );
-        navigate('/adminproducts');
+        Swal.fire({position: 'top-end',
+            imageUrl: 'https://res.cloudinary.com/dc8w6pspj/image/upload/v1662498810/sucess_otelvh.png',
+            imageWidth: 80,
+            imageHeight: 80,
+            text: 'Producto actualizado existosamente',
+            showConfirmButton: false,
+            timer: 800,
+            width: '12rem',
+            height: '5rem',
+            padding:'0.5rem',
+        })
+        navigate('/');
       } catch (error) {
-        alertCustom(
-          'Oops...',
-          'No se pudo actualizar el producto!',
-          'https://res.cloudinary.com/dc8w6pspj/image/upload/v1662498810/warning_tjpeqz.png'
-        );
+        Swal.fire({position: 'top-end',
+        imageUrl: 'https://res.cloudinary.com/henrysburgers/image/upload/v1659301854/error-henrys_zoxhtl.png',
+        imageWidth: 80,
+        imageHeight: 80,
+        text: ' Opps.. no se pudo actualizar el producto',
+        showConfirmButton: false,
+        timer: 800,
+        width: '12rem',
+        height: '5rem',
+        padding:'0.5rem',
+    }) 
       }
     } else {
       try {
         await createProduct('product', input);
-        alertCustom(
-          input.name,
-          'Creada con exito!',
-          'https://res.cloudinary.com/henrysburgers/image/upload/v1659301858/success-henrys_nlrgo0.png'
-        );
-        navigate('/adminproducts');
+        Swal.fire({position: 'top-end',
+            imageUrl: 'https://res.cloudinary.com/dc8w6pspj/image/upload/v1662498810/sucess_otelvh.png',
+            imageWidth: 80,
+            imageHeight: 80,
+            text: 'Producto agregado existosamente',
+            showConfirmButton: false,
+            timer: 800,
+            width: '12rem',
+            height: '5rem',
+            padding:'0.5rem',
+        })
+        navigate('/')
       } catch (error) {
-        alertCustom(
-          'Oops...',
-          'No se pudo crear el producto!',
-          'https://res.cloudinary.com/henrysburgers/image/upload/v1659301854/error-henrys_zoxhtl.png'
-        );
+        Swal.fire({position: 'top-end',
+            imageUrl: 'https://res.cloudinary.com/henrysburgers/image/upload/v1659301854/error-henrys_zoxhtl.png',
+            imageWidth: 80,
+            imageHeight: 80,
+            text: ' Opps.. no se pudo agregar el producto',
+            showConfirmButton: false,
+            timer: 800,
+            width: '12rem',
+            height: '5rem',
+            padding:'0.5rem',
+        }) 
       }
     }
   };
@@ -135,7 +140,6 @@ function CreateOrEdit({ data }) {
       <div className="editBurger__container">
         <img
           src={input.image}
-          onError={(e) => setImgProductErr(e)}
           alt="img not"
           className="editOrCreate__img"
         ></img>
@@ -170,7 +174,6 @@ function CreateOrEdit({ data }) {
               <Form.Label>Image</Form.Label>
               <Form.Control
                 placeholder="Url de la imagen"
-                onChange={setImg}
                 type="file"
                 name="image"
               ></Form.Control>
@@ -304,7 +307,7 @@ function CreateOrEdit({ data }) {
             Confirmar
           </Button>
 
-          <Button onClick={returnback}>Volver</Button>
+          
         </Form>
       </div>
       <hr />
