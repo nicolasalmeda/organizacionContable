@@ -13,7 +13,7 @@ import {
 import CardProductCart from '../CardProductCart/CardProductCart';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import { PlusLg, DashLg, Trash, Windows } from 'react-bootstrap-icons';
+import { PlusLg, DashLg } from 'react-bootstrap-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import imgDefault from '../../Assets/Images/default.jpg';
 

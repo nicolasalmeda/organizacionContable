@@ -60,9 +60,23 @@ const controladoresApi = {
             res.status(404).json({error: error.message})
             console.log(error);
         }
+    },
+
+    deleteProductById : (req,res) => {
+        const id = req.params.id;
+        console.log(id);
+        try{
+            const deleteProduct = databaseProductos.eliminarById(id);
+            res.sendStatus(204)
+        }catch(error){
+            if (error.tipo === "db not found") {
+                res.status(404).json({ error: error.message });
+            } else {
+                res.status(500).json({ error: error.message });
+            } 
+        }
     }
 
-   
 }
 
 module.exports ={controladoresApi};

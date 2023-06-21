@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { clearState, getProductById } from '../../Redux/actions/actions';
+import { Link, useParams,useNavigate } from 'react-router-dom';
+import { clearState, deleteProduct, getProductById } from '../../Redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { addCartProduct } from '../../Redux/actions/actions';
 import CreateOrEdit from '../CreateOrEdit/CreateOrEdit';
 import Swal from 'sweetalert2';
@@ -18,6 +19,7 @@ function ProductDetail() {
   const dispatch = useDispatch();
   const producto = useSelector((state) => state.productDetail);
   const [mostrar, setMostrar] = useState(false);
+  const navigate = useNavigate();
 
 
   const scrollToTop = () => {
@@ -61,6 +63,25 @@ function ProductDetail() {
 
   const onClick = () => {
     return setMostrar(true);
+  }
+
+  const onClick2 = () => {
+    dispatch(deleteProduct(id));
+    Swal.fire({
+      position: 'top-end',
+      imageUrl:
+        'https://res.cloudinary.com/dc8w6pspj/image/upload/v1662498810/sucess_otelvh.png',
+      imageWidth: 80,
+      imageHeight: 80,
+      text: 'Producto Borrado',
+      showConfirmButton: false,
+      timer: 800,
+      width: '12rem',
+      height: '5rem',
+      padding: '0.5rem',
+    });
+    
+    navigate('/')
   }
 
   return (
@@ -160,6 +181,10 @@ function ProductDetail() {
         <hr />
         <Button onClick={onClick} className="mt-3 mb-5">
           Editar Producto
+        </Button>
+        <br/>
+        <Button onClick={onClick2} className="mt-3 mb-5">
+          Eliminar Producto
         </Button>
         <br/>
         <Button as={Link} to="/" className="mt-3 mb-5">

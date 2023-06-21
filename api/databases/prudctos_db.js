@@ -176,6 +176,19 @@ editarProductById: (id, updatedProduct) => {
     products[productIndex] = { ...products[productIndex], ...updatedProduct };
     return products[productIndex];
   }
+},
+
+eliminarById: (id) => {
+  const indiceBorrado = products.findIndex((p) => p.id === id);
+
+  if(indiceBorrado === -1){
+    const error = new Error('producto no encontrado');
+    error.tipo = "db not found";
+    throw error
+  }
+
+  products.splice(indiceBorrado, 1);
+
 }
 
 

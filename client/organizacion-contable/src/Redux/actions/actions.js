@@ -10,6 +10,7 @@ export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const GET_ORDERS = 'GET_ORDERS'
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID'
+export const DELETE_PRODUCT = "DELETE_PRODUCT"
 
 
 
@@ -121,4 +122,19 @@ export function getProductById(id) {
       console.log(error);
   };
 }
+}
+
+export function deleteProduct(id){
+  return async function (dispatch){
+    try{
+      await axios.delete('http://localhost:3001/api/deleteProductById/' + id)
+      return dispatch({
+        type: DELETE_PRODUCT,
+        payload: id,
+      })
+    }catch(error){
+      console.log(error)
+
+    }
+  }
 }

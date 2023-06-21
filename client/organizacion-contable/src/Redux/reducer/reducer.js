@@ -6,7 +6,8 @@ import { GET_ALL_PRODUCTS,
   EDIT_PRODUCT,CLEAR_CART, 
   GET_ORDERS, 
   GET_PRODUCT_BY_ID, 
-  CLEAR_STATE 
+  CLEAR_STATE,
+  DELETE_PRODUCT
 } from "../actions/actions";
 import {addItem, deleteAllItem,deleteItem} from './utils'
 
@@ -78,6 +79,13 @@ const reducer = (state = initialState,action) => {
       return {
         ...state,
         productDetail: [],
+      };
+
+      case DELETE_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter((item) => item.id !== action.payload)
+
       };
 
       
