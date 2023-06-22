@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
@@ -69,7 +69,7 @@ function EmployeePendingOrder() {
                 <li key={j}>
                   <span className="employee__li__span">{item.name}</span>
                   <br />
-                  Cantidad: {item.quantity}
+                  Cantidad: {item.cantidad}
                   <hr />
                 </li>
               ))}

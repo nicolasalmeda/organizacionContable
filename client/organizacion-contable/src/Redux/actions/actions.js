@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { get, create, edit, eliminar } from '../../Components/requests';
 
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const ADD_TO_CART = "ADD_TO_CART";
@@ -17,7 +17,7 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT"
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get( 'http://localhost:3001/api/productos')
+      const response = await get('productos')
       dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response.data,
@@ -68,7 +68,7 @@ export function productDelete (id) {
 export const saveOrder =  (order) => {
   return async () => {
     try {
-      const response = await axios.post('http://localhost:3001/api/pedidos',order)
+      const response = await create('pedidos',order)
       return console.log(response);
     } catch (error) {
       console.log(error)
@@ -80,7 +80,7 @@ export const saveOrder =  (order) => {
 export const editProduct = (cart) => {
   return async () => {
     try{
-      const response = await axios.put('http://localhost:3001/api/editarProductos',cart)
+      const response = await edit('editarProductos',cart)
       return console.log(response);
     } catch(error){
       console.log(error)
@@ -90,7 +90,7 @@ export const editProduct = (cart) => {
 export const getOrders = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get( 'http://localhost:3001/api/pedidos')
+      const response = await get('pedidos')
       dispatch({
         type: GET_ORDERS,
         payload: response.data,
@@ -112,7 +112,7 @@ export function clearState(payload) {
 
 export function getProductById(id) {
   return async function (dispatch) {
-    const json = await axios('http://localhost:3001/api/productosById/' + id);
+    const json = await get(`productosById/${id}`);
     try {
       return dispatch({
         type: GET_PRODUCT_BY_ID,
@@ -127,7 +127,7 @@ export function getProductById(id) {
 export function deleteProduct(id){
   return async function (dispatch){
     try{
-      await axios.delete('http://localhost:3001/api/deleteProductById/' + id)
+      await eliminar( `deleteProductById/${id}`)
       return dispatch({
         type: DELETE_PRODUCT,
         payload: id,

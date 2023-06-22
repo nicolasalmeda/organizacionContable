@@ -7,8 +7,8 @@ import Container from 'react-bootstrap/Container';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
-  createProduct,
-  updateProduct,
+  create,
+  edit,
 } from '../requests';
 import Swal from 'sweetalert2';
 
@@ -19,7 +19,7 @@ import '../FormsGlobal.css';
 function CreateOrEdit({ data }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [edit] = useState(isEdit());
+  const [editado] = useState(isEdit());
   const [input, setInput] = useState({
     name: '',
     price: '',
@@ -37,7 +37,7 @@ function CreateOrEdit({ data }) {
   });
 
   useEffect(() => {
-    if (edit) {
+    if (editado) {
       setInput({
         id: data.id,
         name: data.name,
@@ -55,7 +55,7 @@ function CreateOrEdit({ data }) {
         quantity: data.quantity,
       });
     }
-  }, [dispatch, edit, data]);
+  }, [dispatch, editado, data]);
 
   function isDisabledSubmit() {
     return !input.name || !input.price;
@@ -74,9 +74,9 @@ function CreateOrEdit({ data }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (edit) {
+    if (editado) {
       try {
-        await updateProduct('product', input);
+        await edit(`editarProductosById/${input.id}`, input);
         Swal.fire({position: 'top-end',
             imageUrl: 'https://res.cloudinary.com/dc8w6pspj/image/upload/v1662498810/sucess_otelvh.png',
             imageWidth: 80,
@@ -104,7 +104,8 @@ function CreateOrEdit({ data }) {
       }
     } else {
       try {
-        await createProduct('product', input);
+        const data = {...input, id: undefined};
+        await create('createProductos', data);
         Swal.fire({position: 'top-end',
             imageUrl: 'https://res.cloudinary.com/dc8w6pspj/image/upload/v1662498810/sucess_otelvh.png',
             imageWidth: 80,

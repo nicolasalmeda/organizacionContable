@@ -1,15 +1,12 @@
 import React from "react";
-import { useDispatch,useSelector } from "react-redux";
-import {Link, useNavigate} from 'react-router-dom';
-import Swal from "sweetalert2";
-import Button from 'react-bootstrap/Button';
+import {Link} from 'react-router-dom';
+
 import ImgUri from '../../Assets/Images/outofstock.png'
 
 import './CardProduct.css'
 
 function CardProduct ({id,name,price,imgUri,addToCart,brands,quantity}){
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    
 
 
     return (
@@ -20,7 +17,6 @@ function CardProduct ({id,name,price,imgUri,addToCart,brands,quantity}){
 
 
             <div className="container__product-detail">
-           
             <div className="page-wrapper">
             
                 <div className="row">

@@ -1,22 +1,18 @@
 import axios from "axios";
+axios.defaults.baseURL= 'http://localhost:3001/api/';
 
-  export async function createProduct(product, data) {
-
-    if(!product){
-        throw new Error("Error al crear el producto!")
-    }
-
-    data = {...data, id: undefined};
-    await axios.post('http://localhost:3001/api/createProductos',data)
-
-    
+export function get(url) {
+    return axios.get(url);
 }
 
-export async function updateProduct(product, data) {
+export function create(url, data){
+    return axios.post(url,data)
+}
 
-    if(!product){
-        throw new Error("Error al modificar el producto!")
-    }
-    
-    await axios.put('http://localhost:3001/api/editarProductosById/'+ data.id, data) 
+export function edit(url,data){
+    return axios.put(url,data)
+}
+
+export function eliminar(url){
+    return axios.delete(url)
 }
