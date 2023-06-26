@@ -14,10 +14,8 @@ import CardProductCart from '../CardProductCart/CardProductCart';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import { PlusLg, DashLg } from 'react-bootstrap-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import imgDefault from '../../Assets/Images/default.jpg';
-
-import axios from 'axios';
 import Swal from 'sweetalert2';
 
 import './ShoppingCart.css';
@@ -26,12 +24,7 @@ function ShoppingCart() {
   const dispatch = useDispatch();
   let itemsToCart = useSelector((state) => state.cart);
   const [mount, setMount] = useState(true);
-  const [idtel, setIdtel] = useState(0);
-  const navigate = useNavigate();
   
-  const [discount, setDiscount] = useState(0);
-  const [note, setNote] = useState('');
-  const [filterCarrito, setFilterCarrito] = useState();
   const today = new Date();
   const formatteDate = today.toLocaleDateString();
   
@@ -62,7 +55,6 @@ function ShoppingCart() {
 
   const addToCart = (id) => {
     let payload = {};
-    setIdtel(id)
 
     payload = {
         idtelefono: id,

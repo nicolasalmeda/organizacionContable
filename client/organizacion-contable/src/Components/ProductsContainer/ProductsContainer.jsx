@@ -5,7 +5,6 @@ import CardProduct from '../CardProduct/CardProduct';
 import  Container  from 'react-bootstrap/Container';
 import './ProductsContainer.css';
 import Swal from 'sweetalert2';
-import axios from 'axios';
 
 function ProductsContainer(){
     const dispatch = useDispatch();

@@ -1,28 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { CartFill, CartCheckFill } from 'react-bootstrap-icons';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { CartCheckFill } from 'react-bootstrap-icons';
+import { Link, useLocation } from 'react-router-dom';
 import imgNav from '../../Assets/Images/logofinalfinal.png';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-import {
-  deleteCart,
-  setLoginState,
-  deleteCartUndefined,
-} from '../../Redux/actions/actions';
 
 import './NavBar.css';
 
 
 function NavBar() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const itemsToCart = useSelector((state) => state.cart);
   
   const mount = useRef(true);

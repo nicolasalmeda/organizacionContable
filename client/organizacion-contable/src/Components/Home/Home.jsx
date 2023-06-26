@@ -6,7 +6,7 @@ import './Home.css';
 function Home () {
     return ( 
         <div>
-             <ProductsContainer/> 
+         <ProductsContainer/> 
         </div>
     )
 }

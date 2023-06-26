@@ -15,17 +15,12 @@ import { getOrders } from '../../Redux/actions/actions';
 
 function EmployeePendingOrder() {
   const dispatch = useDispatch();
-  const [isSubmited, setSubmited] = useState(false);
   const orders = useSelector((state) =>state.orders);
   const [mostrarVentana,setMostrarVentana] = useState(false)
   
   const [show, setShow] = useState(false);
-  const [orderId, setOrderId] = useState('');
   const handleClose = () => setShow(false);
-  function handleShow(e) {
-    setOrderId(e.target.value);
-    setShow(true);
-  }
+  
 
   useEffect(() => {
     dispatch(getOrders());
@@ -103,7 +98,7 @@ function EmployeePendingOrder() {
             <Button
               id={orders.id}
               onClick={abrirVentana}
-              disabled={isSubmited}
+              
               variant="primary"
             >
               Confirmar
