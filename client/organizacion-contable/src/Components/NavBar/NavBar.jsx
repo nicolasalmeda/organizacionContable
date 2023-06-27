@@ -1,5 +1,4 @@
-import React, { useEffect, useRef} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Nav from 'react-bootstrap/Nav';
@@ -14,25 +13,7 @@ import './NavBar.css';
 
 
 function NavBar() {
-  const dispatch = useDispatch();
-  const itemsToCart = useSelector((state) => state.cart);
-  
-  const mount = useRef(true);
-  
   const path = useLocation().pathname;
- 
-
-  useEffect(() => {
-    if (mount.current) {
-     
-      
-      }
-      mount.current = false;
-    
-  }, [dispatch, itemsToCart]);
-
-
-
   function setScrollToTop() {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }
@@ -48,7 +29,7 @@ function NavBar() {
         <Navbar className="navBar" expand="lg" variant="dark" sticky="top">
           <Container>
             <Navbar.Brand as={Link} to="/">
-              <img src={imgNav} className="nav-img" alt="Henrys burguer logo" />{' '}
+              <img src={imgNav} className="nav-img" alt="logo" />{' '}
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="navbarScroll" />
@@ -79,16 +60,6 @@ function NavBar() {
                 >
                   Pedidos
                 </Nav.Link>
-                {/* <Nav.Link
-                  className={
-                    path === '/nosotros' ? 'linkActive' : 'navBar__users__link'
-                  }
-                  as={Link}
-                  to="/nosotros"
-                  onClick={setScrollToTop}
-                >
-                  Nosotros
-                </Nav.Link> */}
 
                 <Nav.Link
                   className={

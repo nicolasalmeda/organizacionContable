@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-key */
-import { React, useEffect, useState } from 'react';
+import { React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addCartProduct,
@@ -23,35 +23,10 @@ import './ShoppingCart.css';
 function ShoppingCart() {
   const dispatch = useDispatch();
   let itemsToCart = useSelector((state) => state.cart);
-  const [mount, setMount] = useState(true);
   
   const today = new Date();
   const formatteDate = today.toLocaleDateString();
   
-  
-
-  useEffect(() => {
-    //console.log(filterCarrito);
-    // console.log(itemsToCart);
-  }, [itemsToCart]);
-
-  useEffect(() => {
-    if (!mount) {
-      if (itemsToCart && itemsToCart.length) {
-        window.localStorage.setItem('carrito', JSON.stringify(itemsToCart));
-        // const userid = JSON.parse(window.localStorage.getItem('user'));
-        // const comprajson = JSON.parse(window.localStorage.getItem('carrito'));
-        // console.log(userid.id);
-        // const comprauser = [...comprajson, userid.id];
-        // console.log(comprauser);
-      } else {
-        window.localStorage.removeItem('carrito');
-        window.localStorage.removeItem('compra');
-      }
-    } else {
-      setMount(false);
-    }
-  }, [dispatch, itemsToCart, mount]);
 
   const addToCart = (id) => {
     let payload = {};
