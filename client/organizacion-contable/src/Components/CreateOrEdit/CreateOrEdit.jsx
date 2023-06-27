@@ -136,7 +136,7 @@ function CreateOrEdit({ data }) {
 
   return (
     <Container className="mb-5">
-      <h2>{edit ? 'Editar Producto' : 'Crear Producto'}</h2>
+      <h2>{editado ? 'Editar Producto' : 'Crear Producto'}</h2>
       <hr />
       <div className="editBurger__container">
         <img

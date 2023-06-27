@@ -25,14 +25,6 @@ function ProductsContainer(){
             }
         },[dispatch,itemsToCart,mount]);
 
-        // useEffect(() => {
-        //     axios.get('http://localhost:3001/api/productos')
-        //     .then(response => setData(response.data))
-        //     .catch(error => console.error(error))
-        // },[])
-        // console.log(allProducts);
-        // console.log(data)
-
         useEffect(() => {
             dispatch(getAllProducts());
         },[dispatch])
